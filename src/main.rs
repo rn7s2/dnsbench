@@ -116,7 +116,7 @@ struct Args {
     record: String,
 
     /// DNS server address
-    #[clap(short, long, default_value = "127.0.0.1:53")]
+    #[clap(short, long)]
     server: SocketAddr,
 
     /// Timeout for each request (ms)
