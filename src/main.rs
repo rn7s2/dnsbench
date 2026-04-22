@@ -10,7 +10,7 @@ use std::{
 use addr::parse_domain_name;
 use clap::Parser;
 use dns_parser::{QueryClass, QueryType};
-use rand::seq::SliceRandom;
+use rand::seq::IndexedRandom;
 
 fn main() {
     let args = Args::parse();
@@ -37,7 +37,7 @@ fn main() {
         let socket = UdpSocket::bind("0.0.0.0:0").unwrap();
         socket.connect(server).unwrap();
         threads.push(std::thread::spawn(move || {
-            let mut rng = rand::thread_rng();
+            let mut rng = rand::rng();
             for _ in 0..number {
                 let mut id = id.lock().unwrap();
                 let rid = *id;
